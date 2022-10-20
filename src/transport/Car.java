@@ -1,15 +1,9 @@
 package transport;
 
-import java.awt.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Car {
-    private String brand;
-    private String model;
-    private int productionYears;
-    private String productionCountry;
-    private String color;
+public class  Car extends Transport {
     private float engineVolume;
 
     private String transmission;
@@ -20,38 +14,18 @@ public class Car {
     private Key key;
     private Insurance insurance;
 
-
     public Car(String brand, String model, int productionYears, String productionCountry, String color, float engineVolume,
-               String transmission, String bodyType, String registrationNumber, int seats, String tires, Key key, Insurance insurance) {
-        if (brand == null || brand.isBlank() || brand.isEmpty()) {
-            this.brand = "default";
-        } else {
-            this.brand = brand;
-        }
-        if (model == null || model.isBlank() || model.isEmpty()) {
-            this.model = "default";
-        } else {
-            this.model = model;
-        }
-        if (productionYears <= 0) {
-            this.productionYears = 2000;
-        } else {
-            this.productionYears = productionYears;
-        }
-        if (productionCountry == null || productionCountry.isEmpty() || productionCountry.isBlank()) {
-            this.productionCountry = "default";
-        } else {
-            this.productionCountry = productionCountry;
-        }
-        this.setColor(color);
+               String transmission, String bodyType, String registrationNumber, int seats, String tires, Key key, Insurance insurance, int maxSpeed) {
+        super(brand, model, productionYears, productionCountry, color, maxSpeed);
+
         this.setEngineVolume(engineVolume);
         this.setTransmission(transmission);
+        this.setRegistrationNumber(registrationNumber);
         if (bodyType == null || bodyType.isEmpty() || bodyType.isBlank()) {
             this.bodyType = "default";
         } else {
             this.bodyType = bodyType;
         }
-        this.setRegistrationNumber(registrationNumber);
         if (seats <= 0) {
             this.seats = 5;
         } else {
@@ -68,70 +42,6 @@ public class Car {
         } else {
             this.insurance = insurance;
         }
-    }
-
-    //оставлю 2 конструктора, старый и новый
-    public Car(String brand, String model, int productionYears, String productionCountry, String color, float engineVolume) {
-        if (brand == null || brand.isBlank() || brand.isEmpty()) {
-            this.brand = "default";
-        } else {
-            this.brand = brand;
-        }
-        if (model == null || model.isBlank() || model.isEmpty()) {
-            this.model = "default";
-        } else {
-            this.model = model;
-        }
-        if (productionYears <= 0) {
-            this.productionYears = 2000;
-        } else {
-            this.productionYears = productionYears;
-        }
-        if (productionCountry == null || productionCountry.isEmpty() || productionCountry.isBlank()) {
-            this.productionCountry = "default";
-        } else {
-            this.productionCountry = productionCountry;
-        }
-        if (color == null || color.isEmpty() || color.isBlank()) {
-            this.color = "белый";
-        } else {
-            this.color = color;
-        }
-        if (engineVolume <= 0) {
-            this.engineVolume = 1.5f;
-        } else {
-            this.engineVolume = engineVolume;
-        }
-        if (key == null) {
-            this.key = new Key();
-        } else {
-            this.key = key;
-        }
-        if (insurance == null) {
-            this.insurance = new Insurance();
-        } else {
-            this.insurance = insurance;
-        }
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public int getProductionYears() {
-        return productionYears;
-    }
-
-    public String getProductionCountry() {
-        return productionCountry;
-    }
-
-    public String getColor() {
-        return color;
     }
 
     public float getEngineVolume() {
@@ -164,14 +74,6 @@ public class Car {
 
     public Insurance getInsurance() {
         return insurance;
-    }
-
-    public void setColor(String color) {
-        if (color == null || color.isBlank() || color.isEmpty()) {
-            this.color = "Белый";
-        } else {
-            this.color = color;
-        }
     }
 
     public void setEngineVolume(float engineVolume) {
@@ -207,14 +109,14 @@ public class Car {
     }
 
     @Override
+    public void refill() {
+        System.out.println("заправляем бензином млм заряжаем на электропарковках");
+    }
+
+    @Override
     public String toString() {
         return "Car{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", productionYears=" + productionYears +
-                ", productionCountry='" + productionCountry + '\'' +
-                ", color='" + color + '\'' +
-                ", engineVolume=" + engineVolume +
+                "engineVolume=" + engineVolume +
                 ", transmission='" + transmission + '\'' +
                 ", bodyType='" + bodyType + '\'' +
                 ", registrationNumber='" + registrationNumber + '\'' +
@@ -230,12 +132,12 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return productionYears == car.productionYears && Float.compare(car.engineVolume, engineVolume) == 0 && seats == car.seats && Objects.equals(brand, car.brand) && Objects.equals(model, car.model) && Objects.equals(productionCountry, car.productionCountry) && Objects.equals(color, car.color) && Objects.equals(transmission, car.transmission) && Objects.equals(bodyType, car.bodyType) && Objects.equals(registrationNumber, car.registrationNumber) && Objects.equals(tires, car.tires);
+        return Float.compare(car.engineVolume, engineVolume) == 0 && seats == car.seats && Objects.equals(transmission, car.transmission) && Objects.equals(bodyType, car.bodyType) && Objects.equals(registrationNumber, car.registrationNumber) && Objects.equals(tires, car.tires) && Objects.equals(key, car.key) && Objects.equals(insurance, car.insurance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(brand, model, productionYears, productionCountry, color, engineVolume, transmission, bodyType, registrationNumber, seats, tires);
+        return Objects.hash(engineVolume, transmission, bodyType, registrationNumber, seats, tires, key, insurance);
     }
 
     public void changeTires() {
