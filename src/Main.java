@@ -1,3 +1,4 @@
+import animals.*;
 import transport.Bus;
 import transport.Car;
 import transport.Train;
@@ -63,9 +64,32 @@ public class Main {
         audi.refill();
         bus1.refill();
 
+        Herbivores horse = new Herbivores("Звездочка", 13, "Степи и луга", "88 км/ч");
+        Herbivores giraffe = new Herbivores("Рафик", 19, "Саванна", "Жираф бегает со коростью жирафа");
+        Herbivores gazelle = new Herbivores("Галина", 7, "Саванны Африки", "97 км/ч");
+
+        Predators hyena = new Predators("Локки", 5, "Cаванна", "64 км/ч");
+        Predators tiger = new Predators("Шерхан", 8, "Джунгли", "50 км/ч");
+        Predators bear = new Predators("Баллу", 15, "Лес", "55 км/ч");
+
+        Amphibians frog = new Amphibians("Квакушка", 2, "Болота и озера");
+        Amphibians already = new Amphibians("Ужик", 1, "Болота и озера");
+
+        NotFlying peacock = new NotFlying("Паша", 4, "Лесистая местность", "Пешком на своих двоих");
+        NotFlying penguin = new NotFlying("Гоша", 3, "Антарктика", "Вразвалочку, ну и плавают хорошо");
+        NotFlying dodoBird = new NotFlying("Маргарита", 8, "Городские джунгли", "Курьером");
+
+        Flying gull = new Flying("Джонатон Ливингстон", 5, "Побережье морей и океанов", "Летает");
+        Flying albatross = new Flying("Лабрадор", 3, "Побережье морей и океанов", "Летает");
+        Flying falcon = new Flying("Томас", 9, "Повсеместно", "Летает");
+
+        System.out.println("horse.toString() = " + horse.toString());
+        System.out.println("frog.toString() = " + frog.toString());
+        System.out.println("gull.toString() = " + gull.toString());
+        System.out.println("dodoBird.toString() = " + dodoBird.toString());
+        System.out.println("bear.toString() = " + bear.toString());
+
     }
-
-
 }
 
 
